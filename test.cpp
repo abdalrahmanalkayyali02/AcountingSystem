@@ -1,48 +1,47 @@
-#include "Interface_DateTimeSettingType.h"
 #include <iostream>
+#include "Interface_productType.h"
+
 int main() {
+    std::string quantity;
+    std::string price;
+    std::string name;
+    productType product;
 
-    std::string day;
-    std::string month;
-    std::string year;
-    std::string hour, minute, secound;
-    DateTimeType datetime;
-    do {
-        std::cout << "Enter the day: ";
-        std::cin >> day;
-        datetime.set_Day(day);
-    } while (!datetime.IsDayValied());
+    std::cout << "Enter the quantity of the product : \n";
+    std::cin >> quantity;
+    product.set_productQuantity(quantity);
+    std::cout << product.get_productQuantity() << std::endl; 
+   
+    std::cout << "Enter the price of the product : \n";
+    std::cin >> price;
+    product.set_productPrice(price); 
 
-    // std::cout << "Valid day: " << datetime.get_Day() << std::endl;
-    do { 
-        std::cout << "Enter the month : ";
-        std::cin >> month;
-        datetime.set_Month(month);
-    } while (!datetime.IsMonthValied());
+       std::cout << "Enter the product Name : \n";
+        std::cin >> name;
+        product.set_productName(name);
 
-    do {
-        std::cout << "Enter the year : ";
-        std::cin >> year;
-        datetime.set_Year(year);
-    } while (!datetime.IsYearValied());
+
+
+    std::string user_input;
+    std::string user_dis;
 
     do {
-        std::cout << "Enter the hour : ";
-        std::cin  >> hour;
-        datetime.set_Hour(hour);
-    } while (!datetime.IsHourValied());
+        std::cout << "Enter a product name : ";
+        std::cin >> user_input;
+
+
+        if (product.IsProductNameValied(user_input)) {
+            std::cout << "Product name is valid.\n";
+        } else {
+            std::cout << "Product name is not valid.\n";
+        }
+    } while ((product.IsProductNameValied(user_input)) == false);
 
     do {
-        std::cout << "Enter the minute : ";
-        std::cin >> minute;
-        datetime.set_Minute(minute);
-    } while (!datetime.IsMinuteValied());
+        std::cout << "Enter a product Discribtion : ";
+        std::cin >> user_dis;
 
-    do {
-        std::cout << "Enter the secound : ";
-        std::cin >> secound;
-        datetime.set_Secound(secound);
-    } while (!datetime.IsSecoundValied());
+    } while ((product.IsProductDiscribtionValied(user_dis)) == false);
 
 
 
