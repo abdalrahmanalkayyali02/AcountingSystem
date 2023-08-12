@@ -121,25 +121,41 @@ float productType::get_productPrice() const {
     return productPrice;
 }
 
-/*void print(std::ostream) const {
-// revision file stream befor 
-} */ 
+void productType::print() const { 
+    std::cout << "product Name : "        << productName        << std::endl;
+    std::cout << "product Discribtion : " << productDiscribtion << std::endl;
+
+    std::cout << "product Quantity : ";
+    if (productQuantity < 10 ) {
+        std::cout << "0" << productQuantity    << std::endl;
+    } else {
+        std::cout <<        productQuantity    << std::endl;
+    }
+
+    std::cout << "product Price : ";           
+    if (productPrice < 10) {
+        std::cout << "0" << productPrice       << std::endl;
+    } else {
+        std::cout <<        productPrice       << std::endl;
+    }
+
+}  
 
 /*productType::productType (const std::string& product_name, const std::string& product_discribtion, 
-                          const std::string& Product_Quantity, const std::string& Product_Price) {
+  const std::string& Product_Quantity, const std::string& Product_Price) {
 
-    set_productName(product_name);
-    set_productDiscribtion(product_discribtion);
-    set_productQuantity(Product_Quantity); //quantity
-    set_productPrice(Product_Price); // price
-}  */   
+  set_productName(product_name);
+  set_productDiscribtion(product_discribtion);
+  set_productQuantity(Product_Quantity); //quantity
+  set_productPrice(Product_Price); // price
+  }  */   
 
-/*productType::productType() {
-  set_productName("");
-  set_productDiscribtion("");
-  set_productQuantity("");
-  set_productPrice("");
-  } */ 
+productType::productType() {
+    set_productName("abc");
+    set_productDiscribtion("grqgwrg");
+    set_productQuantity("1");
+    set_productPrice("1");
+} 
 
 
 

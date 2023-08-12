@@ -192,16 +192,38 @@ int DateTimeType::get_Secound() const {
     return secound;
 }
 
-/*void DateTimeType::print() const { 
+void DateTimeType::print() const { 
+    std::cout << "Date : ";
+    if (day < 10 ) {
+        std::cout << "0" << day << "-";
+    } else {
+        std::cout << day << "-";
+    }
 
-} */ 
+    if(month < 10) {
+        std::cout << "0" << month << "-" << year << std::endl;
+    } else {
+        std::cout << month << "-" << year << std::endl;
+    }
+    
+    std::cout << "Time : ";
+    if (hour < 10) {
+        std::cout << "0" << hour << ":";
+    } else {
+        std::cout << hour << ":";
+    } 
 
-/*DateTimeType::DateTimeType(unsigned set_day, unsigned set_month, unsigned set_year, 
-  unsigned set_hour,unsigned set_minute,unsigned set_secound) {
-  set_Day(set_day);
-  set_Month(set_month);
-  set_Year(set_year);
-  set_Hour(set_hour);
-  set_Minute(set_minute);
-  set_Secound(set_secound);
-  } */  
+    if (minute < 10) {
+        std::cout << "0" << minute << ":";
+    } else {
+        std::cout << minute << ":";
+    }
+
+    if (secound < 10) {
+        std::cout << "0" << secound << std::endl;
+    } else {
+        std::cout << secound << std::endl;
+    }
+
+}  
+

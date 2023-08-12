@@ -40,12 +40,5 @@ class DateTimeType {
     public: int get_Secound() const;
 
     // for print the Date and the Time in the file 
-    public: void print(std::ostream) const;
-
-    //construter parameter constructer
-    // foe set Date and Time as :
-    // (day, month, year , hour, minute, secound)
-   // public: DateTimeType(int, int, int, int, int, int); 
+    public: void print() const;
 };
-
-
