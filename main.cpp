@@ -1,30 +1,42 @@
 #include <iostream>
 #include <sstream>
-//#include "Interface_productType.h"
+#include <iomanip>
 #include "Interface_DateTimeSettingType.h"
 #include "Interface_AccountingType.h"
 
 int main() {
-    int userid, userSystem; // id 
-    std::string userpass, PassSystem;  // password
 
-    std::string day, month, year; // date
-    std::string hour, minute, secound; // time
+    std::string SystemID, UserID; // set id 
+    std::string SystemPass, UserPass; // set password
+    std::string day, month, year; // set date
+    std::string hour, minute, secound;  // set year
+    
+    std::string Income_size, Expenss_size; // for set the income and expenss size
+    std::string product_quantity, product_price; // set quantity and price
+    std::string product_name, product_discribtion;  // set name, and discibtion
+    
+    int convertIncome, convertExpenss; // convert variable
+    double total_Income = 0, total_Expenss = 0; // total
+    double Net_Sale = 0;
+    
+    DateTimeType datetime; // object of the DateTimeType class
+    productType Income[10000], Expenss[10000]; // array object of the productType class
+    AccountingType account; // object of the AccountingType class
 
-    PassSystem = "@b3d@1r@h8*@n";
-    userid = 202110142;
+    SystemID = "202110142";
+    SystemPass = "@b3d@1r@h8*@n";
 
-    // checking for the password and id
+    // Checking for the password and ID
     do {
-        std::cout << "Enter User Name : ";
-        std::cin >> userSystem;
+        std::cout << "Enter User Name: ";
+        std::cin >> UserID;
 
-        std::cout << "Enter the password : ";
-        std::cin >> userpass;
+        std::cout << "Enter the password: ";
+        std::cin >> UserPass;
 
-    } while (!(userSystem == userid && PassSystem == userpass));
+    } while (!(SystemID == UserID && SystemPass == UserPass));
 
-    DateTimeType datetime;
+
     do {
         std::cout << "Enter the day: ";
         std::cin >> day;
@@ -61,76 +73,91 @@ int main() {
         datetime.set_Secound(secound);
     } while (!datetime.IsSecoundValied());
 
-    productType product[10000];
-    productType product2[10000];
-    std::string Income_size, Expenss_size, Income_quantity, Expenss_quantity;
-    AccountingType account;
-    int convert;
-    int convert2;
-    int sum_income = 0;
-    int sum_expenss = 0;
-
+    // Set Income Date 
     do {
         std::cout << "Enter the Income Size : ";
         std::cin >> Income_size;
-        account.set_IncomeSize(product, Income_size);
+        account.set_IncomeSize(Income, Income_size);
     } while (!account.IsIncomeSizeValied());
-    convert = std::stoi(Income_size);
-    
-    // storge the product total quantity in the sum
-    for (int i = 0; i < convert; i++) {
-        std::cout << "Enter the quantity for the Income " << i + 1 << " : ";
-        std::cin >> Income_quantity;
-        product[i].set_productQuantity(Income_quantity);
-        sum_income+= product[i].get_productQuantity();
+    convertIncome = std::stoi(Income_size);
+
+
+    for (int i = 0; i < convertIncome; i++) {
+        std::cout << "Enter details for income product #" << (i + 1) << std::endl;
+        std::cin.ignore();
+        do { 
+            std::cout << "Enter The product #" << i + 1 << " Name : ";
+            std::cin.ignore();
+            std::getline(std::cin, product_name);
+            Income[i].set_productName(product_name);
+        } while (!Income[i].IsProductNameValied(product_name));
+
+        do {
+            std::cout << "Enter the Discribtion for the product#" << i + 1 << " : ";
+            std::cin.ignore();
+            std::getline(std::cin, product_discribtion);
+            Income[i].set_productDiscribtion(product_discribtion);
+        } while (!Income[i].IsProductDiscribtionValied(product_discribtion));
+
+        do { 
+            std::cout << "Enter the quantity for the product#" << i + 1 << " : ";
+            std::cin >> product_quantity;
+            Income[i].set_productQuantity(product_quantity);
+        } while (!Income[i].IsProductQuantityValied());
+
+        do {
+            std::cout << "Enter the Price of the product# " << i + 1 << " : ";
+            std::cin  >> product_price;
+            Income[i].set_productPrice(product_price);
+        } while (!Income[i].IsProductPriceValied());
+
+        total_Income+= Income[i].Total();
+        std::cout << "total = " << total_Income;
     }
 
+
+    // Set Expenss Date
     do {
-        std::cout << "Enter the Expenss Size : ";
-        std::cin >> Expenss_size;
-        account.set_ExpenssSize(product2, Expenss_size);
-    } while (!account.IsExpenssSizeValied());
+       std::cout << "Enter the Expenss Size : ";
+       std::cin >> Expenss_size;
+       account.set_ExpenssSize(Expenss, Expenss_size);
+       } while (!account.IsExpenssSizeValied());
+       convertExpenss = std::stoi(Expenss_size); 
+       
+       
+          for (int i = 0; i < convertExpenss; i++) {
+        std::cout << "Enter details for Expenss product #" << (i + 1) << std::endl;
+        std::cin.ignore();
+        do { 
+            std::cout << "Enter The product #" << i + 1 << " Name : ";
+            std::cin.ignore();
+            std::getline(std::cin, product_name);
+            Expenss[i].set_productName(product_name);
+        } while (!Expenss[i].IsProductNameValied(product_name));
 
-    convert2 = std::stoi(Expenss_size);
+        do {
+            std::cout << "Enter the Discribtion for the product#" << i + 1 << " : ";
+            std::cin.ignore();
+            std::getline(std::cin, product_discribtion);
+            Expenss[i].set_productDiscribtion(product_discribtion);
+        } while (!Expenss[i].IsProductDiscribtionValied(product_discribtion));
 
-    //storge the product total quantity in the sum2
-    for (int i = 0; i < convert2; i++) {
-        std::cout << "Enter the quantity of the Expenss " << i + 1 << " : ";
-        std::cin >> Expenss_quantity;
-        product2[i].set_productQuantity(Expenss_quantity);
-        sum_expenss += product[i].get_productQuantity();
-    } 
-    
-    std::string income_price;
-    int sum_priceIncome  = 0;
-    int sum_priceExpenss = 0;
-    // show the income price for each product
-    for (int i = 0 ; i < convert; i++) { 
-        std::cout << "Enter the product price : " << i + 1 << " : " ;
-        std::cin  >> income_price;
-        product[i].set_productPrice(income_price);
-        sum_priceIncome += product[i].get_productPrice();
+        do { 
+            std::cout << "Enter the quantity for the product#" << i + 1 << " : ";
+            std::cin >> product_quantity;
+            Expenss[i].set_productQuantity(product_quantity);
+        } while (!Expenss[i].IsProductQuantityValied());
+
+        do {
+            std::cout << "Enter the Price of the product# " << i + 1 << " : ";
+            std::cin  >> product_price;
+            Expenss[i].set_productPrice(product_price);
+        } while (!Expenss[i].IsProductPriceValied());
+
+        total_Expenss+= Income[i].Total();
     }
-
-    // show the expenss price for each product
-     std::string expenss_price;
-    for (int i = 0; i < convert2; i++) {
-        std::cout << "Enter the product price : " << i +1 << " : ";
-        std::cin >> expenss_price;
-        product2[i].set_productPrice(expenss_price);
-        sum_priceExpenss += product[i].get_productPrice();
-    }
-    double total_income = 0;
-    double total_expenss = 0;
-
-
-        
-
 
 
 
     return 0;
 }
-
-
-
