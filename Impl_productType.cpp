@@ -1,32 +1,33 @@
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
+#include <ctype.h>
 #include "Interface_productType.h"
 
 void productType::set_productName(const std::string& product_name) {
-    try { 
+    try {
         for (char c : product_name) {
-            if (!isalpha(c)) { // isalpha() build in function in c++ using to cheack if is alpha or not 
-                throw"product Name must be as text\n"; 
-            }  else {
-                productName = product_name;
-            } 
+            if (!isalpha(c) && !isspace(c)) { // isalpha() is a built-in function in C++ to check if a character is an alphabet letter
+                throw "Error: Product name must only contain alphabetic letters and spaces\n";
+            }
         }
+
+        productName = product_name; // Moved this line outside the loop
 
     } catch (const char *e) {
         std::cout << e;
-    } catch(...) {
-        std::cout << "Invalied value !";
+    } catch (...) {
+        std::cout << "Invalid value!";
     }
 }
 
-bool productType::IsProductNameValied(const std::string& input) {
-    for (char c : input) { 
-        if (!std::isalpha(c)) {
-            return false;
+bool productType::IsProductNameValied(const std::string& product_name) {
+    for (char c : product_name) {
+        if (!isalpha(c) && !isspace(c)) { // isalpha() is a built-in function in C++ to check if a character is an alphabet letter
+            return false; // Return false if the product name contains invalid characters
         }
     }
-    return true;
+    return true; // Return true if the product name is valid
 }
 
 std::string productType::get_productName() const {
@@ -34,29 +35,30 @@ std::string productType::get_productName() const {
 } 
 
 void productType::set_productDiscribtion(std::string product_discribtion) {
-    try { 
+    try {
         for (char c : product_discribtion) {
-            if (!isalpha(c)) { // isalpha() build in function in c++ using to cheack if is alpha or not 
-                throw"product Discribtion must be as text\n"; 
-            }  else {
-                productDiscribtion = product_discribtion;
-            } 
+            if (!isalpha(c) && !isspace(c)) { // isalpha() is a built-in function in C++ to check if a character is an alphabet letter
+                throw "Error: Product name must only contain alphabetic letters and spaces\n";
+            }
         }
+
+        productDiscribtion = product_discribtion; // Moved this line outside the loop
 
     } catch (const char *e) {
         std::cout << e;
-    } catch(...) {
-        std::cout << "Invalied value !";
+    } catch (...) {
+        std::cout << "Invalid value!";
     }
 }
 
+
 bool productType::IsProductDiscribtionValied(const std::string& input) {
-    for (char c : input) { 
-        if (!std::isalpha(c)) {
-            return false;
+    for (char c : input) {
+        if (!isalpha(c) && !isspace(c)) { // isalpha() is a built-in function in C++ to check if a character is an alphabet letter
+            return false; // Return false if the product name contains invalid characters
         }
     }
-    return true;
+    return true; // Return true if the product name is valid
 }
 
 std::string productType::get_productDiscribtion() const {
@@ -85,7 +87,7 @@ void productType::set_productQuantity(const std::string& input) {
 }
 
 bool productType::IsProductQuantityValied() const {
-    return (productQuantity > 1);
+    return (productQuantity >= 1);
 }
 
 int productType::get_productQuantity() const {
@@ -121,6 +123,9 @@ float productType::get_productPrice() const {
     return productPrice;
 }
 
+float productType::Total() const {
+    return productPrice * productQuantity;
+}
 void productType::print() const { 
     std::cout << "product Name : "        << productName        << std::endl;
     std::cout << "product Discribtion : " << productDiscribtion << std::endl;
@@ -137,18 +142,9 @@ void productType::print() const {
         std::cout << "0" << productPrice       << std::endl;
     } else {
         std::cout <<        productPrice       << std::endl;
-    }
+    } 
 
-}  
-
-/*productType::productType (const std::string& product_name, const std::string& product_discribtion, 
-  const std::string& Product_Quantity, const std::string& Product_Price) {
-
-  set_productName(product_name);
-  set_productDiscribtion(product_discribtion);
-  set_productQuantity(Product_Quantity); //quantity
-  set_productPrice(Product_Price); // price
-  }  */   
+}
 
 productType::productType() {
     set_productName("abc");
