@@ -1,5 +1,4 @@
 #include <string>
-#include <fstream>
 
 class productType {
     private: std::string productName;
@@ -27,9 +26,10 @@ class productType {
     public: bool IsProductPriceValied() const;
     public: float get_productPrice() const;
 
-            // for print Date and Time in file
+            // for print and get the Total = price * quantity 
+    public: float Total() const;
     public: void print() const;
-            
+
             // constructer
     public: productType(); 
 };

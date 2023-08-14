@@ -127,30 +127,28 @@ float productType::Total() const {
     return productPrice * productQuantity;
 }
 void productType::print() const { 
-    std::cout << "product Name : "        << productName        << std::endl;
-    std::cout << "product Discribtion : " << productDiscribtion << std::endl;
-
-    std::cout << "product Quantity : ";
+    
     if (productQuantity < 10 ) {
         std::cout << "0" << productQuantity    << std::endl;
     } else {
         std::cout <<        productQuantity    << std::endl;
     }
-
-    std::cout << "product Price : ";           
+    
     if (productPrice < 10) {
         std::cout << "0" << productPrice       << std::endl;
     } else {
         std::cout <<        productPrice       << std::endl;
     } 
-
+    
+    std::cout << "product Name   \t\t product Discribtion \t\t\t product Quantity \t\t product Price " << std::endl;     
+    std::cout << productName << "\t\t" << productDiscribtion << "\t\t\t " << productQuantity << "\t\t" << productPrice << std::endl;  
 }
 
 productType::productType() {
-    set_productName("abc");
-    set_productDiscribtion("grqgwrg");
-    set_productQuantity("1");
-    set_productPrice("1");
+   /* set_productName(" ");
+    set_productDiscribtion(" ");
+    set_productQuantity("0");
+    set_productPrice("0"); */ 
 } 
 
 

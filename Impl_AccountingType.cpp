@@ -1,5 +1,6 @@
 #include "Interface_AccountingType.h"
 #include <iostream>
+#include <string>
 #include <stdlib.h>
 #include <sstream>
 
@@ -67,12 +68,3 @@ int AccountingType::get_ExpenssSize() const {
     return ExpenssSize;
 }
 
-int AccountingType::get_IncomeQuantity(productType[])  {
-     int IncomeQuantity = 0; 
-     productType product[IncomeSize];
-
-    for (int index = 0; index < IncomeSize; index++) {
-        IncomeQuantity += (product[index].get_productQuantity());
-    } 
-    return IncomeQuantity;
-}
