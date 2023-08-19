@@ -12,7 +12,7 @@ void AccountingType::set_IncomeSize(productType[] , const std::string& input) {
                                        // string number and text
         if (!(iss >> income_size)) {
             throw "Error : The Income size can not be as text it must be as numircal value \n";
-        } else if (income_size < 20 )  {
+        } else if (income_size < 5 )  {
             throw "Error : The Income size can not be less than 20 \n";
         } else if (income_size > 10000) {
             throw "Error : The Income Size can not be more than 10000\n";
@@ -29,7 +29,7 @@ void AccountingType::set_IncomeSize(productType[] , const std::string& input) {
 }
 
 bool AccountingType::IsIncomeSizeValied() const {
-    return (IncomeSize >= 20 && IncomeSize < 10000);
+    return (IncomeSize >= 5 && IncomeSize < 10000);
 }
 
 int AccountingType::get_IncomeSize() const {

@@ -198,14 +198,15 @@ int main() {
             std::cout << "Thanks for the excellent sale.\n";
         }  
 
-/*
-        std::cout << "The details for Expense products: \n";
-        std::cout << "Name \t\t Discription \t\t\t Quantity \t\t Price\t\t\n";
+
+         std::cout << std::setw(10) << std::left << "Name" <<  std::setw(10) << std::left << " Discribtion" << "\t\t"
+                   << std::setw(10) << std::left << "Quantity" << "\t" <<  std::setw(10) << std::left << "Price " 
+                   << "\t" << std::setw(10) << std::left << "Total" << std::endl;
+            
         for (int i = 0; i < convertExpenss; i++) {
-            std::cout << Expenss[i].get_productName() << "\t\t" << Expenss[i].get_productDiscribtion() << "\t\t\t"
-                << Expenss[i].get_productQuantity() << "\t\t" << Expenss[i].get_productPrice() << std::endl;
-        }
-    } */ 
+            std::cout << Expenss[i].get_productName() << "\t\t" << Expenss[i].get_productDiscribtion() << "\t\t"
+                << "   " << Expenss[i].get_productQuantity() << "\t\t  " << Expenss[i].get_productPrice() << "\t\t  "
+                << Expenss[i].Total() << std::endl;
 
     return 0;
 }
