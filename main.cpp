@@ -5,7 +5,7 @@
 #include "Interface_DateTimeSettingType.h"
 #include "Interface_AccountingType.h"
 
-int main() {
+int main(void) {
 
     std::string SystemID, UserID; // set id 
     std::string SystemPass, UserPass; // set password
@@ -207,6 +207,6 @@ int main() {
             std::cout << Expenss[i].get_productName() << "\t\t" << Expenss[i].get_productDiscribtion() << "\t\t"
                 << "   " << Expenss[i].get_productQuantity() << "\t\t  " << Expenss[i].get_productPrice() << "\t\t  "
                 << Expenss[i].Total() << std::endl;
-
+        }
     return 0;
 }
