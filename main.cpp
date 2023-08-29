@@ -5,8 +5,9 @@
 #include "Interface_DateTimeSettingType.h"
 #include "Interface_AccountingType.h"
 
-int main(void) {
-
+int main() { 
+    
+ 
     std::string SystemID, UserID; // set id 
     std::string SystemPass, UserPass; // set password
     std::string day, month, year; // set date
@@ -73,7 +74,7 @@ int main(void) {
         std::cout << "Enter the second : ";
         std::cin >> secound;
         datetime.set_Secound(secound);
-    } while (!datetime.IsSecoundValied());
+    } while (!datetime.IsSecoundValied()); 
 
     // Set Income Date 
     do {
@@ -181,32 +182,45 @@ int main(void) {
             
             std::cout << "Explanatory Screen of Sales and Expenses for Critical Situation: \n";
             datetime.print();
-            std::cout << "The details for Income products: \n";
+            
+            std::cout << std::endl << "The details for Income products: \n";
 
-            std::cout << std::setw(10) << std::left << "Name" <<  std::setw(10) << std::left << " Discribtion" << "\t\t"
-                      << std::setw(10) << std::left << "Quantity" << "\t" <<  std::setw(10) << std::left << "Price " 
-                      << "\t" << std::setw(10) << std::left << "Total" << std::endl;
+            std::cout << std::setw(15) << std::left << "Name" << "\t\t"
+                      << std::setw(15) << std::left << "Discribtion" << "\t\t"
+                      << std::setw(15) << std::left << "Quantity" << "\t\t" 
+                      << std::setw(15) << std::left << "Price "  << "\t\t" 
+                      << std::setw(15) << std::left << "Total" << std::endl;
             
             for (int i = 0; i < convertIncome; i++) { 
-                std::cout << Income[i].get_productName() << "\t\t" << Income[i].get_productDiscribtion() << "\t\t"
-                          << "   " << Income[i].get_productQuantity() << "\t\t  " << Income[i].get_productPrice() << "\t\t  "
-                          << Income[i].Total() << std::endl;
+                std::cout << std::setw(15) << std::left << Income[i].get_productName() << "\t\t" 
+                          << std::setw(15) << std::left << Income[i].get_productDiscribtion() << "\t\t"
+                          << std::setw(15) << std::left << Income[i].get_productQuantity() << "\t\t"
+                          << std::setw(15) << std::left << Income[i].get_productPrice() << "\t\t"
+                          << std::setw(15) << std::left << Income[i].Total() << std::endl; 
             }
+        
+        
+         
+        std::cout << std::endl << "The details for Expense products: \n";
 
+        std::cout     << std::setw(15) << std::left << "Name" << "\t\t"
+                      << std::setw(15) << std::left << "Discribtion" << "\t\t"
+                      << std::setw(15) << std::left << "Quantity" << "\t\t" 
+                      << std::setw(15) << std::left << "Price "  << "\t\t" 
+                      << std::setw(15) << std::left << "Total" << std::endl;
+            
+        
+            for (int i = 0; i < convertExpenss; i++) { 
+                std::cout << std::setw(15) << std::left << Expenss[i].get_productName() << "\t\t" 
+                          << std::setw(15) << std::left << Expenss[i].get_productDiscribtion() << "\t\t"
+                          << std::setw(15) << std::left << Expenss[i].get_productQuantity() << "\t\t"
+                          << std::setw(15) << std::left << Expenss[i].get_productPrice() << "\t\t"
+                          << std::setw(15) << std::left << Expenss[i].Total() << "\n";
+            }   
 
         } else if (total_Income >= 10000) { 
             std::cout << "Thanks for the excellent sale.\n";
         }  
 
-
-         std::cout << std::setw(10) << std::left << "Name" <<  std::setw(10) << std::left << " Discribtion" << "\t\t"
-                   << std::setw(10) << std::left << "Quantity" << "\t" <<  std::setw(10) << std::left << "Price " 
-                   << "\t" << std::setw(10) << std::left << "Total" << std::endl;
-            
-        for (int i = 0; i < convertExpenss; i++) {
-            std::cout << Expenss[i].get_productName() << "\t\t" << Expenss[i].get_productDiscribtion() << "\t\t"
-                << "   " << Expenss[i].get_productQuantity() << "\t\t  " << Expenss[i].get_productPrice() << "\t\t  "
-                << Expenss[i].Total() << std::endl;
-        }
     return 0;
 }
