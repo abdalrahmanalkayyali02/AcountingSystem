@@ -3,6 +3,7 @@
 #include "Interface_AccountingType.h"
 
 bool cheack_id_pass(std::string, std::string);
+void displayScreen();
 
 int main() {
 
@@ -189,4 +190,12 @@ bool cheack_id_pass (std::string id, std::string password) {
     return (SystemID == id) && (SystemPass == password);
 }
 
+void displayScreen() {
 
+    std::cout << "Enter Your choice : " << std::endl;
+    std::cout << "1- for show Total Sale " << std::endl;
+    std::cout << "2- for show Net Income "  << std::endl;
+    std::cout << "3- for show static screen " << std::endl;
+    std::cout << "4- for show rating option " << std::endl;
+    std::cout << "5- for Exit " << std::endl;
+} 
