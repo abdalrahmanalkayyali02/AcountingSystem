@@ -1,16 +1,14 @@
 #include <iostream>
-#include <vector>
+#include <iomanip>
 #include "Interface_DateTimeSettingType.h"
 #include "Interface_AccountingType.h"
-
-std::string convertToText(int number);
-bool cheack_id_pass(std::string, std::string);
-void displayScreen();
+#include "Function.h"
 
 int main() {
 
     std::string user_id, user_pass;
     int try_number = 3;
+    int choice_current = 0., prev_choice = 0, static_choice = 0;
     bool result = 0;
     std::string day, month, year; // set date
     std::string hour, minute, secound;  // set yea
@@ -46,7 +44,9 @@ int main() {
         } else if (try_number <= 0) {
             std::cout << "Sorry You can not LogIn !! " << std::endl;
             result = 0;
+            exit(1);
             break;
+
         } 
 
     } while (cheack_id_pass(user_id, user_pass) == false);
@@ -176,77 +176,74 @@ int main() {
             std::cout << std::endl;
             total_Expenss+= Expenss[i].Total();
         }
-        Net_Sale = total_Income - total_Expenss;
+            Net_Sale = total_Income - total_Expenss;
+            
+            do {
+                displayScreen();
+                std::cin >> choice_current;
 
+                switch (choice_current) {
+                    
+                    case 1:
+                        std::cout << "Total Income = " << Net_Sale << std::endl;
+                        break;
 
+                    case 2:
+                            if (prev_choice == 1) {
+                                Net_Sale = Net_Sale - (Net_Sale * 0.16);
+                                std::string textRepresentation = convertToText(Net_Sale);
+                                std::cout << "Total Net Sale = " << Net_Sale << std::endl;
+                                std::cout << " Total Net Sale in word : " << textRepresentation << std::endl;
+                            } else {
+                                std::cout << "you have to choice show total sale befor " << std::endl;
+                            }
+                        break;
 
-    }
+                    case 3:
+                        displayStatic();
+                        std::cin >> static_choice;
 
+                        if (static_choice == 1) {
+                            account.MAX_INCOME(Income);
+                        } else if (static_choice == 2) {
+                            account.LOW_INCOME(Income);
+                        } else if (static_choice == 3) {
+                            account.MAX_EXPENSS(Income);
+                        } else if (static_choice == 4) {
+                            account.LOW_EXPENSS(Expenss);
+                        } else {
+                            std::cout << "Inccorect value !! \n";
+                        } 
+                        break;
+
+                    case 4:
+                        if((total_Income < total_Expenss) && (total_Income > 1000)) {
+                            std::cout << "Warning: There is a problem with it and requires management intervention\n";
+                        
+                        } else if (total_Income < 1000) {
+                            std::cout <<  "Warning: The financial situation is critical that requires planning to solve the problem\n";   
+                        
+                        }  else if (total_Income >= 10000) { 
+                            std::cout << "Thanks for the excellent sale.\n";
+                        }  
+                        break;
+
+                    case 5: 
+                        char agree;
+                        std::cout << "are you sure you want to exit ? (y/n) ";
+                        std::cin >> agree;
+
+                        if (agree == 'y') {
+                            std::cout << "Bye " << std::endl;
+                            exit(1);
+                        } 
+                        break;
+
+                        default:
+                            std::cout << "Incorrect value choice correct one !!" << std::endl;
+                    } 
+                    prev_choice = choice_current;
+                } while ((prev_choice && choice_current) != -1);
+        }
     return 0;
 }
-
-bool cheack_id_pass (std::string id, std::string password) {
-    std::string SystemID = "202110142";
-    std::string SystemPass = "@b3d@1r@h8*@n";
-
-    return (SystemID == id) && (SystemPass == password);
-}
-
-void displayScreen() {
-
-    std::cout << "Enter Your choice : " << std::endl;
-    std::cout << "1- for show Total Sale " << std::endl;
-    std::cout << "2- for show Net Income "  << std::endl;
-    std::cout << "3- for show static screen " << std::endl;
-    std::cout << "4- for show rating option " << std::endl;
-    std::cout << "5- for Exit " << std::endl;
-}
-
-std::string convertToText(int number) {
-    if (number == 0) {
-        return "zero";
-    }
-
-    const char* words1to9[] = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-    const char* words10to19[] = {"", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
-    const char* words20to90[] = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
-
-    std::vector<std::string> parts;
-
-    int thousands = number / 1000;
-    if (thousands > 0) {
-        parts.push_back(convertToText(thousands) + " thousand");
-        number %= 1000;
-    }
-
-    int hundreds = number / 100;
-    if (hundreds > 0) {
-        parts.push_back(std::string(words1to9[hundreds]) + " hundred");
-        number %= 100;
-    }
-
-    if (number >= 10 && number <= 19) {
-        parts.push_back(words10to19[number - 10]);
-    } else {
-        int tens = number / 10;
-        int ones = number % 10;
-        if (tens > 0) {
-            parts.push_back(words20to90[tens]);
-        }
-        if (ones > 0) {
-            parts.push_back(words1to9[ones]);
-        }
-    }
-
-    // Combine the parts into a single string
-    std::string result;
-    for (const std::string& part : parts) {
-        result += part + " ";
-    }
-
-    // Remove trailing space
-    result.pop_back();
-
-    return result;
-}
-

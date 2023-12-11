@@ -68,3 +68,92 @@ int AccountingType::get_ExpenssSize() const {
     return ExpenssSize;
 }
 
+void AccountingType::LOW_INCOME(productType product[]) {
+    product[IncomeSize];
+     double minPrice = product[0].get_productPrice();
+    int minIndex = 0;
+
+    for (int i = 1; i < IncomeSize; i++) {
+        if (product[i].get_productPrice() < minPrice) {
+            minPrice = product[i].get_productPrice();
+            minIndex = i;
+        }
+    }
+
+    // Print the product with the minimum price
+    std::cout << "Product Income with the minimum price:\n";
+    std::cout << "Product Name:  " << product[minIndex].get_productName() << "\n";
+    std::cout << "Product Price: " << product[minIndex].get_productPrice() << "\n";
+}
+
+void AccountingType::MAX_INCOME(productType product[]) {
+    product[IncomeSize];
+    double maxPrice = product[0].get_productPrice();
+    int maxIndex = 0;
+
+    for (int i = 1; i <IncomeSize; i++) {
+        if (product[i].get_productPrice() > maxPrice) {
+            maxPrice = product[i].get_productPrice();
+            maxIndex = i;
+        }
+    } 
+
+    // Print the product with the max price
+    std::cout << "product Income with the max price : \n";
+    std::cout << "Product Name  : " << product[maxIndex].get_productName()  << "\n";
+    std::cout << "Product Price : " << product[maxIndex].get_productPrice() << "\n";
+}
+
+void AccountingType::MAX_EXPENSS(productType product[]) {
+    product[ExpenssSize];
+    double maxPrice = product[0].get_productPrice();
+    int maxIndex = 0;
+
+    for (int i = 1; i < ExpenssSize; i++) {
+        if (product[i].get_productPrice() > maxPrice) {
+            maxPrice = product[i].get_productPrice();
+            maxIndex = i;
+        }
+    }
+
+    std::cout << "product Expenss with the max price : \n";
+    std::cout << "Product Name  : " << product[maxIndex].get_productName()  << "\n";
+    std::cout << "Product Price : " << product[maxIndex].get_productPrice() << "\n";
+}
+
+void AccountingType::LOW_EXPENSS(productType product[]) {
+    product[ExpenssSize];
+    double minPrice = product[0].get_productPrice();
+    int minIndex = 0;
+
+    for (int i = 1; i< ExpenssSize; i++) {
+        if(product[i].get_productPrice() < minPrice) {
+            minPrice =product[i].get_productPrice();
+            minIndex = i;
+        }
+    }
+
+
+    //Print the product with the minimum price
+    std::cout << "Product Expenss with the minimum price:\n";
+    std::cout << "Product Name:  " << product[minIndex].get_productName() << "\n";
+    std::cout << "Product Price: " << product[minIndex].get_productPrice() << "\n";
+} 
+
+void AccountingType::Income_Expenss_Equal(productType Income[], productType Expenss[]) {
+    Income[IncomeSize];
+    Expenss[ExpenssSize];
+
+    for (int i = 0; i < IncomeSize; i++) {
+        for (int j = 0; j < ExpenssSize; j++) {
+            if (Income[i].get_productPrice() == Expenss[j].get_productPrice()) {
+                std::cout << "Income and Expenss price : \n";
+                std::cout << "product Income name : " << Income[i].get_productName()  << "\n";
+                std::cout << "product Expenss name: " << Expenss[j].get_productName() << "\n";
+                std::cout << "product Price equal = " << Income[i].get_productPrice() << "\n"; 
+            }
+
+        }
+    }
+}
+
