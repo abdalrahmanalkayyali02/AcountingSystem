@@ -211,7 +211,10 @@ int main() {
                             account.MAX_EXPENSS(Income);
                         } else if (static_choice == 4) {
                             account.LOW_EXPENSS(Expenss);
-                        } else {
+                        } else if (static_choice == 5) {
+                            account.Income_Expenss_Equal(Income,Expenss);
+                        } 
+                        else {
                             std::cout << "Inccorect value !! \n";
                         } 
                         break;
