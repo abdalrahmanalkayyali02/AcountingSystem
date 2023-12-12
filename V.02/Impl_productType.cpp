@@ -145,7 +145,7 @@ void productType::print() const {
 }
 
 productType::productType() {
-   /set_productName(" ");
+   set_productName(" ");
     set_productDiscribtion(" ");
     set_productQuantity("0");
     set_productPrice("0"); 
